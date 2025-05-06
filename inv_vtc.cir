@@ -1,0 +1,19 @@
+* CMOS Inverter VTC Characteristics
+
+Vsupply Vdd 0 5
+Vin in 0 DC 0
+
+M1 out in 0 0 nfet W=10u L=1u
+M2 out in Vdd Vdd pfet W=20u L=1u
+
+
+.model nfet NMOS(VTO=0.7)
+.model pfet PMOS(VTO=0.7)
+
+.DC Vin 0 5 0.01
+
+.control
+run
+plot v(in) v(out)
+.endc
+.end

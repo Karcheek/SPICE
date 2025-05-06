@@ -1,0 +1,17 @@
+* CMOS NAND Gate
+Vsupply VDD 0 3.3
+Va A 0 PULSE(0 3.3 0 0 0 5u 10u)
+Vb B 0 PULSE(0 3.3 0 0 0 10u 20u)
+M1 INT B 0 0 nfet L = 10U W = 200u
+M2 OUT A INT 0 nfet L = 10u W = 200u
+M3 OUT A VDD VDD pfet L = 10u W = 400u
+M4 OUT B VDD VDD pfet L = 10u W = 400u
+.model nfet NMOS(VTO = 0.5)
+.model pfet PMOS(VTO = -0.5)
+.tran 1u 50u 0u
+.control
+run
+PLOT V(A) V(B) + 5 V(OUT) + 10
+.endc
+.end
+

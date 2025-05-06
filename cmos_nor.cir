@@ -1,0 +1,22 @@
+*CMOS NOR 
+
+Vsupply Vdd 0 3.3
+
+Va a 0 pulse(0 3.3 0 0 0 5u 10u)
+Vb b 0 pulse(0 3.3 0 0 0 10u 20u)
+
+M1 out a 0 0 nfet l=10u w=200u
+M2 out b 0 0 nfet l=10u w=200u
+M3 int a vdd vdd pfet l=10u w=400u
+M4 out b int vdd pfet l=10u w=400u
+
+.model nfet nmos(VTO=0.7)
+.model pfet pmos(VTO=-0.7)
+
+.tran 1u 50u 0u
+
+.control
+  run
+  plot v(a) v(b)+5 v(out)+10
+.endc
+.end

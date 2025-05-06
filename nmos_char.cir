@@ -1,0 +1,14 @@
+* NMOS Characteristics
+VDD 3 0 3.3
+VGS 4 0 3.3
+Vdummy 5 2 0
+RD 3 5 100
+RG 1 4 100k
+M1 2 1 0 0 nfet L = 10u W = 200u
+.model nfet NMOS(VTO = 0.7 LAMBDA = 0.01 KP = 20u)
+.DC VDD 0 3.3 1 VGS 0 3.3 1 
+.control 
+run
+plot I(Vdummy)
+.endc
+.end

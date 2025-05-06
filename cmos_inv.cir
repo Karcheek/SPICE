@@ -1,0 +1,13 @@
+*CMOS Inverter
+Vsupply VDD 0 3.3
+Vin IN 0 PULSE(0 3.3 0 0 0 5u 10u)
+M1 OUT IN 0 0 nfet L = 10u W = 200u
+M2 OUT IN VDD  VDD pfet L = 10u W = 400u
+.model nfet NMOS(VT0 = 0.7)
+.model pfet PMOS(VT0 = -0.7)
+.tran 0.1u 50u 0
+.control
+run
+PLOT V(IN) V(OUT) + 5
+.endc
+.end
